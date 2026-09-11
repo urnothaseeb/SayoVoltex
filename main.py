@@ -6,12 +6,23 @@ pygame.init()
 pygame.mixer.init(44100, -16, 2, 256)
 gc.disable()
 game_settings = settings.load_settings()
-screen = pygame.display.set_mode((game_settings["resolution"][0], game_settings["resolution"][1]), pygame.FULLSCREEN if game_settings["fullscreen"] else 0)
+
+# -- Set resolution to native resolution of the monitor if full screen is true 
+
+info = pygame.display.Info()
+if game_settings["fullscreen"]:
+    res = (info.current_w, info.current_h)
+else:
+    res = (game_settings["resolution"][0], game_settings["resolution"][1])
+
+screen = pygame.display.set_mode(res, pygame.FULLSCREEN if game_settings["fullscreen"] else 0)
+
+# -- end
+
 pygame.scrap.init()
 constants.SCALE_X = screen.get_width() / constants.BASE_W
 constants.SCALE_Y = screen.get_height() / constants.BASE_H
 print(f"Scale X: {constants.SCALE_X}, Scale Y: {constants.SCALE_Y}")
-
 
 state = states.MENU
 metadata, objectdata, map_path = None, None, None

@@ -1,11 +1,13 @@
 import pygame
 from game import constants, utils
 class Slider:
-    def __init__(self, x, y, width, min_val, max_val, current_val, label):
+    def __init__(self, x, y, width, min_val, max_val, current_val, label, height = None):
         self.x = x
         self.y = y
         self.width = width
-        self.height = utils.scale_y(10)
+        if height == None: self.height = utils.scale_y(10) 
+        else: self.height = height
+        
 
         self.min_val = min_val
         self.max_val = max_val
@@ -49,6 +51,7 @@ class Slider:
             display_val = f"{int(self.value * 100)}%"
         else:  # delay
             display_val = f"{int(self.value)} ms"
-
-        text = self.font.render(f"{self.label}: {display_val}", True, (255,255,255))
+        #audioDel_text = utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)).render("- AUDIO DELAY", True, "Black")
+        
+        text = utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)).render(f"{self.label}: {display_val}", True, (255,255,255))
         screen.blit(text, (self.x, self.y - utils.scale_y(40)))

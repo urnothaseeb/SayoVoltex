@@ -16,7 +16,7 @@ def set_keybinding(action, key):
     key_bindings[action] = key
 
 def get_font(size): 
-    return pygame.font.Font("assets/font/font.ttf", int(size))
+    return pygame.font.Font("assets/font/Nuqun-Regular.otf", int(size))
 
 def scale_x(num):
     return int(num * constants.SCALE_X)

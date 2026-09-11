@@ -1,7 +1,7 @@
 import pygame
 from game import constants, utils
-BASE_W = 1280
-BASE_H = 720
+BASE_W = 1920
+BASE_H = 1080
 
 SCALE_X = 1
 SCALE_Y = 1
@@ -29,6 +29,7 @@ SIZE_XXTINY = 10.0
 SIZE_XTINY = 17.5
 SIZE_TINY = 25.0
 SIZE_SMALL = 50.0
+SIZE_MEDIUM_TINY = 60.0     # Added this for options screen buttons
 SIZE_MEDIUM_SMALL = 75.0
 SIZE_MEDIUM = 100.0
 SIZE_MEDIUM_LARGE = 125.0

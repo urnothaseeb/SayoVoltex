@@ -4,30 +4,70 @@ from game import button, settings, states, utils, constants
 
 
 
-
 def main_menu(screen):
-    pygame.display.set_caption("Menu")  
-    main_menu_background = pygame.image.load("assets/backgrounds/start_screen_background.png")
+    pygame.display.set_caption("Menu")
+    main_menu_background = pygame.image.load("assets/New Assets/Main Menu/Main_Background.png")
+    
+    #main_menu_background = pygame.image.load("assets/Temp assets/Sayo_Voltex_2b.png")
+    
     main_menu_background = pygame.transform.scale(main_menu_background, screen.get_size()).convert()
 
-    sayovoltex_logo = pygame.image.load("assets/images/sayovoltex_logo.png").convert_alpha()
-    sayovoltex_logo = pygame.transform.scale(sayovoltex_logo, (utils.scale_x(500), utils.scale_y(500)))
-
-    play_button = button.Button(image=sayovoltex_logo, pos=(utils.scale_x(640), utils.scale_y(300)), 
+    # play button sprites for highlight when mouse hover
+    playbutton_normal = pygame.image.load("assets/New Assets/Main Menu/Play_Button.png").convert_alpha()
+    
+    # all three buttons have the same width x height
+    original_w, original_h = playbutton_normal.get_size()
+    
+    playbutton_highlight = pygame.image.load("assets/New Assets/Main Menu/Play_Button_Highlighted.png").convert_alpha()    
+    playbutton_normal = pygame.transform.scale(playbutton_normal, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    playbutton_highlight = pygame.transform.scale(playbutton_highlight, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    
+    play_button = button.Button(image=playbutton_normal, h_image=playbutton_highlight, pos=(utils.scale_x(375), utils.scale_y(350)), 
                              text_input="", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)), 
-                             base_color="#d7fcd4", hovering_color="White")
-    options_button = button.Button(image=None, pos=(utils.scale_x(640), utils.scale_y(650)), 
-                                text_input="OPTIONS", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)), 
+                             base_color="#d7fcd4", hovering_color="#3ea9ff")
+    
+    # option button sprites...
+    optionbutton_normal = pygame.image.load("assets/New Assets/Main Menu/Settings_Button.png").convert_alpha()
+    optionbutton_highlight = pygame.image.load("assets/New Assets/Main Menu/Settings_Button_Highlighted.png").convert_alpha()    
+    optionbutton_normal = pygame.transform.scale(optionbutton_normal, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    optionbutton_highlight = pygame.transform.scale(optionbutton_highlight, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    
+    
+    options_button = button.Button(image=optionbutton_normal, h_image=optionbutton_highlight, pos=(utils.scale_x(375), utils.scale_y(500)),
+                                text_input="", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)), 
+                                base_color="#d7fcd4", hovering_color="Black")
+
+    # editor button sprites
+    editorbutton_normal = pygame.image.load("assets/New Assets/Main Menu/Editor_Button.png").convert_alpha()
+    editorbutton_highlight = pygame.image.load("assets/New Assets/Main Menu/Editor_Button_Highlighted.png").convert_alpha()    
+    editorbutton_normal = pygame.transform.scale(editorbutton_normal, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    editorbutton_highlight = pygame.transform.scale(editorbutton_highlight, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    
+    editor_button = button.Button(image=editorbutton_normal, h_image=editorbutton_highlight, pos=(utils.scale_x(375), utils.scale_y(650)), 
+                                text_input="", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)),
                                 base_color="#d7fcd4", hovering_color="White")
-    quit_button = button.Button(image=None, pos=(utils.scale_x(1130), utils.scale_y(650)), 
-                             text_input="QUIT", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)),
-                             base_color="#d7fcd4", hovering_color="White")
-    editor_button = button.Button(image=None, pos=(utils.scale_x(150), utils.scale_y(650)), 
-                             text_input="EDITOR", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)),
-                             base_color="#d7fcd4", hovering_color="White")
-    information_button = button.Button(image=None, pos=(utils.scale_x(1250), utils.scale_y(30)), 
-                             text_input="?", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)),
-                             base_color="#d7fcd4", hovering_color="White")
+
+    # quit button sprites...
+    quitbutton_normal = pygame.image.load("assets/New Assets/Main Menu/Quit_Button.png").convert_alpha()
+    quitbutton_highlight = pygame.image.load("assets/New Assets/Main Menu/Quit_Button_Highlighted.png").convert_alpha()    
+    quitbutton_normal = pygame.transform.scale(quitbutton_normal, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    quitbutton_highlight = pygame.transform.scale(quitbutton_highlight, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    
+    quit_button = button.Button(image=quitbutton_normal, h_image=quitbutton_highlight, pos=(utils.scale_x(375), utils.scale_y(800)), 
+                                text_input="", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)),
+                                base_color="#d7fcd4", hovering_color="White")
+    
+    # help button sprites...    (has different size so will not use origigal_w x original_h)
+    helpbutton_normal = pygame.image.load("assets/New Assets/Main Menu/Help_Button.png").convert_alpha()
+    original_w, original_h = helpbutton_normal.get_size()
+    
+    helpbutton_highlight = pygame.image.load("assets/New Assets/Main Menu/Help_Button_Highlighted.png").convert_alpha()    
+    helpbutton_normal = pygame.transform.scale(helpbutton_normal, (utils.scale_x(original_w), utils.scale_y(original_h)))
+    helpbutton_highlight = pygame.transform.scale(helpbutton_highlight, (utils.scale_x(original_w), utils.scale_y(original_h)))
+
+    information_button = button.Button(image=helpbutton_normal, h_image=helpbutton_highlight, pos=(utils.scale_x(1850), utils.scale_y(65)), 
+                                text_input="", font=utils.get_font(utils.scale_y(constants.SIZE_MEDIUM_SMALL)),
+                                base_color="#d7fcd4", hovering_color="White")
     
 
     # Load image assets for later
@@ -40,6 +80,7 @@ def main_menu(screen):
         screen.blit(main_menu_background, (0, 0))
 
         menu_mouse_pos = pygame.mouse.get_pos()
+
 
         
         for b in [play_button, options_button, quit_button, editor_button, information_button]:

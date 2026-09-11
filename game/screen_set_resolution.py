@@ -135,10 +135,15 @@ def set_resolution_menu(screen):
 
                     if full_screen_button.check_for_input(set_resolution_mouse_pos):
                         screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+                        info = pygame.display.Info()
+                        #screen = pygame.display.set_mode((info.current_w, info.current_h), pygame.FULLSCREEN)
+
                         game_settings["fullscreen"] = True
+                        game_settings["resolution"] = [info.current_w, info.current_h]
                         settings.save_settings(game_settings)
-                        constants.SCALE_X = screen.get_width() / constants.BASE_W
-                        constants.SCALE_Y = screen.get_height() / constants.BASE_H
+
+                        constants.SCALE_X = info.current_w / constants.BASE_W
+                        constants.SCALE_Y = info.current_h / constants.BASE_H
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
